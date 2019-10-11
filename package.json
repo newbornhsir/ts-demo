@@ -1,10 +1,10 @@
 {
-  "name": "ts-demo",
+  "name": "ts",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "webpack-dev-server --config webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,19 @@
   "bugs": {
     "url": "https://github.com/newbornhsir/ts-demo/issues"
   },
-  "homepage": "https://github.com/newbornhsir/ts-demo#readme"
+  "homepage": "https://github.com/newbornhsir/ts-demo#readme",
+  "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.6",
+    "ts-loader": "^6.2.0",
+    "typescript": "^3.6.3",
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.2"
+  },
+  "dependencies": {
+    "html-webpack-plugin": "^3.2.0"
+  }
 }
