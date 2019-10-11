@@ -1,33 +1,13 @@
-import {AxiosRequestConfig, AxiosPromise} from './type'
-import {buildUrl} from './utils/urls'
-import {transformRequestData as transformData} from './utils/data'
-import {buildHeader} from './utils/header'
-import xhr from './xhr'
-function axios(config:AxiosRequestConfig):AxiosPromise{
-  //TODO:
-  processConfig(config)
-  return xhr(config)
+import { AxiosInstance } from './type'
+import Axios from './core/axios'
+import {extend} from './utils/util'
+function createInstance(): AxiosInstance {
+  const contex = new Axios()
+  const instance = Axios.prototype.request.bind(contex)
+  extend(instance, contex)
+  return instance as AxiosInstance
 }
-
-function processConfig (config: AxiosRequestConfig):void {
-  config.url = transformUrl(config)
-  config.data = transformRequestData(config)
-  config.headers = transformHeader(config)
-}
-
-function transformUrl(config:AxiosRequestConfig):string{
-  let {url, params} = config
-  return buildUrl(url, params)
-}
-
-function transformRequestData(config: AxiosRequestConfig):any {
-  return transformData(config.data)
-}
-
-function transformHeader(config: AxiosRequestConfig): object {
-  return buildHeader(config.headers)
-}
-
+const axios = createInstance()
 axios({
   method: 'get',
   url: '/api/test',
@@ -43,3 +23,4 @@ axios({
   params: {a: 1, b: 2, c: [1,2,3]},
   data: {json: true}
 })
+axios.get('/api/test')

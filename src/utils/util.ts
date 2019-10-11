@@ -12,3 +12,10 @@ export function isDate(val:any): val is Date {
 export function isPlainObject(val: any): val is Object {
   return toString.call(val) === '[object Object]'
 }
+
+export function extend<T, U> (to: T, from: U): T & U {
+  for (const key in from) {
+    (<T & U>to)[key] = (<any>from[key])
+  }
+  return to as T & U
+}

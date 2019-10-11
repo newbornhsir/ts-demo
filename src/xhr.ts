@@ -5,7 +5,7 @@ export default function xhr(config:AxiosRequestConfig): AxiosPromise {
   const {data = null, url, method="get", headers, timeout, responseType} = config
   return new Promise((resolve, reject) => {
     const request = new XMLHttpRequest()
-    request.open(method.toUpperCase(), url, true)
+    request.open(method.toUpperCase(), url!, true)
     /**FIXME: */
     Object.keys(headers as object).forEach(name => {
       request.setRequestHeader(name, headers[name])
